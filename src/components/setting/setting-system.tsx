@@ -1,12 +1,13 @@
 import { Box } from '@mui/material'
-import React from 'react'
+import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Switch, TooltipIcon } from '@/components/base'
+import { DialogRef, Switch, TooltipIcon } from '@/components/base'
 import ProxyControlSwitches from '@/components/shared/proxy-control-switches'
 import { useVerge } from '@/hooks/use-verge'
 
 import { GuardState } from './mods/guard-state'
+import { IpReportViewer } from './mods/ip-report-viewer'
 import { SettingList, SettingItem } from './mods/setting-comp'
 
 interface Props {
@@ -17,6 +18,7 @@ const SettingSystem = ({ onError }: Props) => {
   const { t } = useTranslation()
 
   const { verge, mutateVerge, patchVerge } = useVerge()
+  const ipReportRef = useRef<DialogRef>(null)
 
   const { enable_auto_launch, enable_silent_start } = verge ?? {}
 
@@ -30,6 +32,8 @@ const SettingSystem = ({ onError }: Props) => {
 
   return (
     <SettingList title={t('settings.sections.system.title')}>
+      <IpReportViewer ref={ipReportRef} />
+
       <Box data-setting-target="settings.sections.system.toggles.tunMode">
         <ProxyControlSwitches
           label={t('settings.sections.system.toggles.tunMode')}
@@ -43,6 +47,18 @@ const SettingSystem = ({ onError }: Props) => {
           onError={onError}
         />
       </Box>
+
+      <SettingItem
+        data-setting-target="settings.sections.system.fields.ipReport"
+        onClick={() => ipReportRef.current?.open()}
+        label={t('settings.sections.system.fields.ipReport')}
+        extra={
+          <TooltipIcon
+            title={t('settings.sections.system.tooltips.ipReport')}
+            sx={{ opacity: '0.7' }}
+          />
+        }
+      />
 
       <SettingItem
         data-setting-target="settings.sections.system.fields.autoLaunch"

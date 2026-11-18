@@ -205,6 +205,13 @@ const liteMode = {
   dialog: 'lite-mode-viewer',
 } satisfies GroupDefaults
 
+const ipReport = {
+  section: 'settings.sections.system.title',
+  path: 'settings.modals.ipReport.title',
+  dialog: 'ip-report-viewer',
+  aliases: 'ip report whitelist 上报 白名单',
+} satisfies GroupDefaults
+
 const settingsCatalog: readonly SettingEntry[] = [
   ...group(system, {
     'settings.sections.system.toggles.tunMode': 'TUN 虚拟网卡 vpn',
@@ -252,6 +259,15 @@ const settingsCatalog: readonly SettingEntry[] = [
     'settings.modals.sysproxy.fields.proxyBypass': 'proxy bypass',
     'settings.modals.sysproxy.fields.pacScriptContent': 'pac script content',
     'settings.modals.sysproxy.actions.editPac': 'edit pac',
+  }),
+  ...group(system, {
+    'settings.sections.system.fields.ipReport':
+      'ip report whitelist 上报 白名单',
+  }),
+  ...group(ipReport, {
+    'settings.modals.ipReport.toggles.enable': 'enable ',
+    'settings.modals.ipReport.fields.port': 'port ',
+    'settings.modals.ipReport.fields.path': 'path ',
   }),
   ...group(system, {
     'settings.sections.system.fields.autoLaunch': 'auto launch ',

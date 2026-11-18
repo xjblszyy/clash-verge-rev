@@ -16,11 +16,13 @@
         "systemProxy": "System Proxy"
       },
       "tooltips": {
-        "silentStart": "Start the program in background mode without displaying the panel"
+        "silentStart": "Start the program in background mode without displaying the panel",
+        "ipReport": "When connecting, report this machine's IP to every server in the subscription so the server whitelists it"
       },
       "fields": {
         "autoLaunch": "Auto Launch",
-        "silentStart": "Silent Start"
+        "silentStart": "Silent Start",
+        "ipReport": "IP Report"
       },
       "notifications": {
         "tunMode": {
@@ -650,6 +652,25 @@
       "fields": {
         "ipAddress": "IP Address",
         "macAddress": "MAC Address"
+      }
+    },
+    "ipReport": {
+      "title": "IP Report Settings",
+      "toggles": {
+        "enable": "Enable IP Report"
+      },
+      "fields": {
+        "port": "Report Port",
+        "path": "Report Path",
+        "proxyPorts": "Proxy ports on this VPS",
+        "installCommand": "VPS One-Click Install"
+      },
+      "messages": {
+        "hint": "Requests http://<server>:<report port>/<node port>/<report path> directly for every node. Failures are ignored.",
+        "installHint": "Run as root on every VPS. All VPSes share the report port and path above, so save these settings too."
+      },
+      "actions": {
+        "copyCommand": "Copy command"
       }
     }
   },

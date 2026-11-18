@@ -16,11 +16,13 @@
         "systemProxy": "系统代理"
       },
       "tooltips": {
-        "silentStart": "程序启动时以后台模式运行，不显示程序面板"
+        "silentStart": "程序启动时以后台模式运行，不显示程序面板",
+        "ipReport": "开启连接时把本机 IP 上报到订阅中的每台服务器，由服务器自动加入白名单"
       },
       "fields": {
         "autoLaunch": "开机自启",
-        "silentStart": "静默启动"
+        "silentStart": "静默启动",
+        "ipReport": "IP 上报"
       },
       "notifications": {
         "tunMode": {
@@ -650,6 +652,25 @@
       "fields": {
         "ipAddress": "IP 地址",
         "macAddress": "MAC 地址"
+      }
+    },
+    "ipReport": {
+      "title": "IP 上报设置",
+      "toggles": {
+        "enable": "启用 IP 上报"
+      },
+      "fields": {
+        "port": "上报端口",
+        "path": "上报路径",
+        "proxyPorts": "该 VPS 的代理端口",
+        "installCommand": "VPS 一键安装命令"
+      },
+      "messages": {
+        "hint": "将对每个节点直连请求 http://<服务器>:<上报端口>/<节点端口>/<上报路径>，失败会被忽略。",
+        "installHint": "在每台 VPS 上以 root 运行。所有 VPS 共用上面的上报端口和路径，复制后记得保存设置。"
+      },
+      "actions": {
+        "copyCommand": "复制命令"
       }
     }
   },

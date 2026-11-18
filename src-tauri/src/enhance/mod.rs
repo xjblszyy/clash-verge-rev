@@ -42,6 +42,7 @@ struct ConfigValues {
     enable_dns_settings: bool,
     dns_override_confirmation: Option<String>,
     enable_external_controller: bool,
+    enable_ip_report: bool,
     #[cfg(not(target_os = "windows"))]
     redir_enabled: bool,
     #[cfg(target_os = "linux")]
@@ -122,9 +123,11 @@ async fn get_config_values(profile_uid: &str) -> ConfigValues {
         ref verge_socks_enabled,
         ref verge_http_enabled,
         ref enable_external_controller,
+        ref enable_ip_report,
         ..
     } = **verge_arc;
     let enable_external_controller = enable_external_controller.unwrap_or(false);
+    let enable_ip_report = enable_ip_report.unwrap_or(false);
     let dns_settings = verge_arc.dns_settings_for(profile_uid);
     let dns_override_confirmation = dns_settings.confirmation;
 
@@ -154,6 +157,7 @@ async fn get_config_values(profile_uid: &str) -> ConfigValues {
         enable_dns_settings,
         dns_override_confirmation,
         enable_external_controller,
+        enable_ip_report,
         #[cfg(not(target_os = "windows"))]
         redir_enabled,
         #[cfg(target_os = "linux")]
@@ -852,6 +856,7 @@ pub async fn enhance(
         enable_dns_settings,
         dns_override_confirmation,
         enable_external_controller,
+        enable_ip_report,
         #[cfg(not(target_os = "windows"))]
         redir_enabled,
         #[cfg(target_os = "linux")]
@@ -926,6 +931,11 @@ pub async fn enhance(
     let config = authoritative.enforce(config);
     let config = ensure_tun_default_mtu(config);
     let config = ensure_lan_bind_address(config);
+    let config = if enable_tun && enable_ip_report {
+        crate::core::ip_report::prepend_direct_rules(config)
+    } else {
+        config
+    };
 
     let config = cleanup_proxy_groups(config);
     let config = use_sort(config);

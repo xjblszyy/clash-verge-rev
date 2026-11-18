@@ -556,6 +556,7 @@ impl CoreManager {
         .ok_or_else(|| {
             anyhow::anyhow!("cannot apply system proxy before core readiness").context(SysproxyFailure::CoreNotReady)
         })?;
+        crate::core::ip_report::request();
         #[cfg(target_os = "macos")]
         crate::utils::resolve::dns::sync_public_dns().await;
         // Only automatic restores can wait for the watcher; explicit requests must report failure.

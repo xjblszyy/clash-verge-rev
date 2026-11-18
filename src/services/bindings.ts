@@ -448,6 +448,12 @@ export type IVerge_Deserialize = {
   /**  代理页面自动滚动延迟（毫秒） */
   hover_jump_navigator_delay?: number | null
   enable_external_controller?: boolean | null
+  /**  Report this machine's IP to every proxy server so its port guardian whitelists it. */
+  enable_ip_report?: boolean | null
+  /**  The guardian's HTTP port, shared by every server. */
+  ip_report_port?: number | null
+  /**  The guardian's passport path, shared by every server. */
+  ip_report_path?: string | null
   tray_icon?: string | null
   verge_redir_port?: number | null
   verge_redir_enabled?: boolean | null
@@ -538,6 +544,12 @@ export type IVerge_Serialize = {
   /**  代理页面自动滚动延迟（毫秒） */
   hover_jump_navigator_delay: number | null
   enable_external_controller: boolean | null
+  /**  Report this machine's IP to every proxy server so its port guardian whitelists it. */
+  enable_ip_report: boolean | null
+  /**  The guardian's HTTP port, shared by every server. */
+  ip_report_port: number | null
+  /**  The guardian's passport path, shared by every server. */
+  ip_report_path: string | null
   tray_icon?: string | null
   verge_redir_port?: number | null
   verge_redir_enabled?: boolean | null

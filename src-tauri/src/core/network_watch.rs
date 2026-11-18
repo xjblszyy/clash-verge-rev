@@ -37,6 +37,7 @@ pub fn start() {
 }
 
 async fn reapply() {
+    crate::core::ip_report::request();
     // Config lock first, then lifecycle: the repo's order. Holding both also means the config
     // read below is committed state, not a patch that may still roll back.
     let _config_write = Config::lock_config_write().await;

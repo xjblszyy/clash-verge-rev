@@ -203,6 +203,15 @@ pub struct IVerge {
     pub hover_jump_navigator_delay: Option<u64>,
 
     pub enable_external_controller: Option<bool>,
+
+    /// Report this machine's IP to every proxy server so its port guardian whitelists it.
+    pub enable_ip_report: Option<bool>,
+
+    /// The guardian's HTTP port, shared by every server.
+    pub ip_report_port: Option<u16>,
+
+    /// The guardian's passport path, shared by every server.
+    pub ip_report_path: Option<String>,
 }
 
 #[derive(Default, Debug, Clone, Deserialize, Serialize, specta::Type)]
@@ -481,6 +490,9 @@ impl IVerge {
         patch_opt_field!(self, patch, enable_dns_settings);
         patch_opt_field!(self, patch, home_cards);
         patch_opt_field!(self, patch, enable_external_controller);
+        patch_opt_field!(self, patch, enable_ip_report);
+        patch_opt_field!(self, patch, ip_report_port);
+        patch_opt_field!(self, patch, ip_report_path);
     }
 
     pub fn get_log_level(&self) -> LevelFilter {

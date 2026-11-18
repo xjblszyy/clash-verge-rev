@@ -36,6 +36,10 @@ pub mod timing {
     // mihomo rewrites provider caches in place.
     pub const RUNTIME_PROVIDER_SETTLE: Duration = Duration::from_secs(2);
 
+    // Catches address changes no event reports, such as a PPPoE redial.
+    pub const IP_REPORT_INTERVAL: Duration = Duration::from_secs(10 * 60);
+    pub const IP_REPORT_TIMEOUT_SECS: u64 = 5;
+
     // Windows 服务冷启动较慢,避免过早回退 sidecar。
     #[cfg(target_os = "windows")]
     pub const SERVICE_WAIT_MAX: Duration = Duration::from_millis(30000);

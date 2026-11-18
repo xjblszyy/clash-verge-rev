@@ -1095,6 +1095,25 @@ export interface TranslationResources {
             enableGlobal: string
           }
         }
+        ipReport: {
+          actions: {
+            copyCommand: string
+          }
+          fields: {
+            installCommand: string
+            path: string
+            port: string
+            proxyPorts: string
+          }
+          messages: {
+            hint: string
+            installHint: string
+          }
+          title: string
+          toggles: {
+            enable: string
+          }
+        }
         liteMode: {
           actions: {
             enterNow: string
@@ -1386,6 +1405,7 @@ export interface TranslationResources {
         system: {
           fields: {
             autoLaunch: string
+            ipReport: string
             silentStart: string
           }
           notifications: {
@@ -1400,6 +1420,7 @@ export interface TranslationResources {
             tunMode: string
           }
           tooltips: {
+            ipReport: string
             silentStart: string
           }
         }
